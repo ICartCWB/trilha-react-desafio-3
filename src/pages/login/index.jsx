@@ -19,6 +19,11 @@ const Login = () => {
         mode: 'onChange',
     });
 
+    // adicionado navegação para cadastrar conta na tag CriarText
+    const handleClickCriarConta = () => {
+        navigate('/cadastro')
+    }
+
     const onSubmit = async (formData) => {
         try{
             const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
@@ -30,7 +35,7 @@ const Login = () => {
 
             alert('Usuário ou senha inválido')
         }catch(e){
-            //TODO: HOUVE UM ERRO
+            alert('Ocorreu o seguinte erro no login:\n', e)
         }
     };
 
@@ -56,7 +61,7 @@ const Login = () => {
                 </form>
                 <Row>
                     <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText>Criar Conta</CriarText>
+                    <CriarText onClick={handleClickCriarConta}>Criar Conta</CriarText>
                 </Row>
                 </Wrapper>
             </Column>

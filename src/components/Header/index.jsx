@@ -1,11 +1,26 @@
 import React from 'react'
 import logo from '../../assets/logo-dio.png';
 
+// adicionado import do navigate
+import { useNavigate  } from "react-router-dom";
+
 import { Button } from '../Button';
 
 import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
 
 const Header = ({autenticado}) => {
+
+  // adicionado navegação para login e cadastrar conta
+  const navigate = useNavigate()
+
+  const handleClickCriarConta = () => {
+    navigate('/cadastro')
+  }
+
+  const handleClickLogin = () => {
+    navigate('/login')
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -27,8 +42,8 @@ const Header = ({autenticado}) => {
               ) : (
               <>
                 <MenuRight href="/">Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
+                <Button title="Entrar" onClick={handleClickLogin}/>
+                <Button title="Cadastrar" onClick={handleClickCriarConta}/>
               </>)}
           </Row>
       </Container>
